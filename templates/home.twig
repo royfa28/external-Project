@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    {% include 'partials/head.twig' %}
+    <body>
+    {% include 'partials/navigation.twig' %}
+        <main clas="container-fluid">
+            <div class="row contain">
+            {% include 'partials/carousel.twig' %}
+            </div>
+            <div class="row contain">
+            {% for product in products %}
+                <div class="col-md-3">
+                    <img class="img-fluid img-thumbnail" src="images/products/{{product.Image}}">
+                    <h4 class="product-name">{{product.name}}</h4>
+                    <h6 class="product-price">{{product.price}}</h6>
+                    <p class="product-description">{{product.description | slice(0,50) ~ '...'}}</p>
+                    <div class="text-center"> 
+                        <a href="detail.php?product_id={{product.product_id}}"> Add to Cart </a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        <h1>Products</h1>
+    </body>
+</html>
