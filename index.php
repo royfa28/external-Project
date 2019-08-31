@@ -1,3 +1,4 @@
+
 <?php
 require('vendor/autoload.php');
 
@@ -7,6 +8,7 @@ session_start();
 $_SESSION['auth'] = true;
 session_destroy();
 */
+
 
 use aitSydney\Navigation;
 
