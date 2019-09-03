@@ -9,7 +9,6 @@ $_SESSION['auth'] = true;
 session_destroy();
 */
 
-
 use aitSydney\Navigation;
 
 $nav = new Navigation();
