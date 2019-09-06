@@ -1,4 +1,3 @@
-
 <?php
 require('vendor/autoload.php');
 
@@ -10,14 +9,6 @@ session_destroy();
 */
 
 use aitSydney\Navigation;
-
-$nav = new Navigation();
-$nav_items = $nav -> getNavigation();
-
-use aitSydney\Product;
-
-$products = new Product();
-$products_result = $products -> getProducts();
 
 //create twig loader
 //$loader = new \Twig\Loader\FilesystemLoader('templates');
@@ -31,8 +22,6 @@ $template = $twig -> load('home.twig');
 
 //pass values to twig
 echo $template -> render([
-    'navigation' => $nav_items,
-    'products' => $products_result,
     'title' => 'Hello shop'
 ]);
 ?>
