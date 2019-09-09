@@ -3,7 +3,7 @@ $('document').ready(function() {
     const URL = "http://ec2-3-14-6-238.us-east-2.compute.amazonaws.com:3000";
 
         $.ajax({
-            url: URL + "/api/menus/get/all",
+            url: URL + "/api/menus/get/menuByType/3",
             type: "GET",
             success: function(result) {
                 console.log(result.data);
@@ -29,23 +29,12 @@ $('document').ready(function() {
                             + '<button type="button" class="close" data-dismiss="modal" aria-label="Close">'
                             + '<span aria-hidden="true">&times;</span> </button>'
                         + '</div>'
-                        + '<div class="modal-body">Price ' + result.data[i].price + '</div>'
+                        + '<div class="modal-body">Price: $' + result.data[i].price + '</div>'
                         + '<div class="modal-footer">'
                             + '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
                             + '<button type="button" class="btn btn-primary">Add to cart</button>'
                         +'</div> </div> </div> </div>';
-
-                    
-                    /*
-                    temp += '<div class="col-md-3"> <img class="img-fluid img-thumbnail" src="images/' + result.data[i].pictureName +
-                        '"><h5 class="product-name">' 
-                        + result.data[i].name + '</h5> <h6 class="product-price"> $' 
-                        + result.data[i].price 
-                        + '</h6> <p class="product-description">' + result.data[i].description 
-                        + '</p><button> Add to cart </button></div>';
-                        */
                 } 
-                //temp += "</table>";
                 console.log(temp);
                 $('#root').html(temp);
             },
