@@ -3,7 +3,7 @@ $('document').ready(function() {
     const URL = "http://ec2-3-14-6-238.us-east-2.compute.amazonaws.com:3000";
 
         $.ajax({
-            url: URL + "/api/menus/get/menuByType/3",
+            url: URL + "/api/menus/get/all",
             type: "GET",
             success: function(result) {
                 console.log(result.data);
