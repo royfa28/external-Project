@@ -11,8 +11,15 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     
     $scope.orders = [];
 
+    //$scope.getAllOrder();
     $scope.getAllOrder();
+    $scope.setCheckOrderInterval();
+    
   });
+
+  $scope.setCheckOrderInterval = function () {
+    setInterval(function(){ $scope.getAllOrder(); }, 3000);
+  }
 
   // get all order
   $scope.getAllOrder = function () {
@@ -40,21 +47,6 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.myOrderBy = name;
 
 
-  }
-
-  // get student detail
-  $scope.getStudentDetail = function (studentNumber) {
-    $http.post("../includes/queryStudentRecord.php",
-      {
-        postRequest: 'getStudentDetail',
-        studentId: studentNumber
-      })
-      .then(function mySuccess(response) {
-        $scope.studentDetails = response.data.studentDetails;
-        $scope.showStudentDetails = true;
-      }, function myError(response) {
-        alert("Get student detail fail.");
-      });
   }
 
   $scope.updateSearchKey = function (keyEvent, searchField) {

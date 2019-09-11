@@ -136,15 +136,15 @@
   <div ng-app="myApp" ng-controller="OrderManagementCtrl">
     <div class="title">Order Management</div>
 
-    <table id="tblOrders">
+    <table id="table-header-blue">
       <thead>
-        <tr>
-          <th>No</th>
-          <th>Date/Time</th>
-          <th>Delivery Detail</th>
-          <th>Total Amount</th>
-          <th>Status</th>
-          <th>Action</th>
+        <tr >
+          <th class="col-no">No</th>
+          <th class="col-dateTime">Date/Time</th>
+          <th class="col-deliveryDetail">Delivery Detail</th>
+          <th class="col-totalAmount">Total Amount</th>
+          <th class="col-status">Status</th>
+          <th class="col-action">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -154,7 +154,10 @@
           <td>{{ order.deliveryAddressId }}</td>
           <td>{{ order.totalAmount }}</td>
           <td>{{ order.status }}</td>
-          <td></td>
+          <td>
+            <img class="oder-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">
+
+          </td>
         </tr>
       </tbody>
     </table>
