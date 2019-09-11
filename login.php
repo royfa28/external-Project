@@ -36,7 +36,12 @@
 					<span class="login100-form-title">
 						Welcome
 					</span>
-					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
+
+					<span class="login100-form-avatar">
+						<img src="images/logo.jpg" alt="Logo">
+					</span>
+
+					<div class="wrap-input100 validate-input m-t-55 m-b-35" data-validate = "Enter username">
 						<input class="input100" type="text" name="username">
 						<span class="focus-input100" data-placeholder="Username"></span>
 					</div>
@@ -47,11 +52,12 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button id="submit-btn" onclick="login();" class="login100-form-btn login-btn">
-							Login
-						</button>
+						
 					</div>
 				</form>
+				<button id="submit-btn" onclick="login();" class="login100-form-btn login-btn">
+							Login
+						</button>
 			</div>
 		</div>
 	</div>
