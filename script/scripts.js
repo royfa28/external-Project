@@ -11,9 +11,9 @@ $('document').ready(function() {
                 // show product here. You can do the table but I will show only simple way.
                 for (var i = 0; i < result.data.length; i++) {
 
-            temp += '<div class="card-deck" style="float:left; width:25%; padding:5px; height:400px;">'
+            temp += '<div class="card-deck" style="float:left; width:20%; padding:5px; height:300px;">'
                     + '<div class="card">'
-                        + '<img class="card-img-top" style="width:200px; margin: 0 auto;"; src="images/' + result.data[i].pictureName + '">'
+                        + '<img class="card-img-top" style="width:150px; margin: 0 auto;"; src="images/' + result.data[i].pictureName + '">'
                             + '<div class="card-body">'
                             + '<h5 class="card-title" style="font-weight:bold;">' + result.data[i].name + '</h5>'
                             + '<p class="card-text">' + result.data[i].description + '</p> </div>'
@@ -32,11 +32,11 @@ $('document').ready(function() {
                         + '<div class="modal-body">Price: $' + result.data[i].price + '</div>'
                         + '<div class="modal-footer">'
                             + '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
-                            + '<button type="button" class="btn btn-primary">Add to cart</button>'
+                            + '<button type="button" class="btn btn-primary" data-action="ADD_TO_CART">Add to cart</button>'
                         +'</div> </div> </div> </div>';
                 } 
                 console.log(temp);
-                $('#root').html(temp);
+                $('#allmenu').html(temp);
             },
             error: function(error) {
                 console.log('Error ${error}');
