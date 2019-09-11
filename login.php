@@ -47,7 +47,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn login-btn">
+						<button id="submit-btn" onclick="login();" class="login100-form-btn login-btn">
 							Login
 						</button>
 					</div>
@@ -75,6 +75,12 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	<script>
+		function login(){
+			// TODO: get authorize before open start main page
+			window.open ('staff-main.php','_self',false);
+		}
+	</script>
 
 </body>
 </html>
