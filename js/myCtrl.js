@@ -10,15 +10,21 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.findStatus = "";
     
     $scope.orders = [];
+    $scope.deliveryAddresses = [];
 
-    //$scope.getAllOrder();
     $scope.getAllOrder();
+    $scope.getAllDeliveryAddress();
     $scope.setCheckOrderInterval();
-    
+
   });
 
   $scope.setCheckOrderInterval = function () {
-    setInterval(function(){ $scope.getAllOrder(); }, 1000);
+    setInterval(function(){ $scope.getAllOrder(); }, 3000);
+
+  }
+
+  $scope.playAlert = function(){
+    document.getElementById('alert-sound').play();
   }
 
   // get all order
@@ -27,8 +33,30 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       .then(function mySuccess(response) {
         $scope.orders = response.data.data;
         console.log($scope.orders);
+        
+        // check if have new order in the list,
+        // aleart sound
+        var newOrders = $scope.orders.filter((item)=>{
+          return item.status == 'New Order';
+        });
+      
+        if (newOrders.length > 0){
+          $scope.playAlert();
+        }
+        
       }, function myError(response) {
         alert("Get all order fail.");
+      });
+  }
+
+  // get all delivery address
+  $scope.getAllDeliveryAddress = function () {
+    $http.get($scope.URL + "/api/orders/get/all/deliveryAddress")
+      .then(function mySuccess(response) {
+        $scope.deliveryAddresses = response.data.data;
+        
+      }, function myError(response) {
+        alert("Get all delivery address fail.");
       });
   }
 
@@ -59,7 +87,6 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       $scope.mySortType = "";
     }
     $scope.myOrderBy = name;
-
 
   }
 

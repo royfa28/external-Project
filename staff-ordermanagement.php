@@ -133,6 +133,9 @@
 
 <body onFocus="parent_disable();" onclick="parent_disable();">
 
+<!-- load alert audio -->
+<audio id="alert-sound" src="audios/alert.mp3" preload="auto"></audio>
+
   <div ng-app="myApp" ng-controller="OrderManagementCtrl">
     <div class="title">Order Management</div>
 
@@ -151,7 +154,14 @@
         <tr ng-repeat="order in orders">
           <td>{{ $index +1 }}</td>
           <td>{{ order.orderDate | date: 'dd/MM/yy hh:mm' }}</td>
-          <td>{{ order.deliveryAddressId }}</td>
+          <td>
+            <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
+            {{deliveryAddress.contactName}}   Telephone: {{deliveryAddress.telephone}} 
+            <br>{{deliveryAddress.address}}
+            
+            
+            </div>
+          </td>
           <td>{{ order.totalAmount }}</td>
           <td>{{ order.status }}</td>
           <td>
@@ -172,13 +182,6 @@
               <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
                 Cancel Order
               </button>
-  
-
-
-
-
-
-
 
           </td>
         </tr>
@@ -255,7 +258,6 @@
                 modal = document.getElementById('modalNotification');
                 modal.style.display = "block";
               }
-
               */
     </script>
     <script src="js/myApp.js"></script>
