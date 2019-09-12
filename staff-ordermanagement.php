@@ -138,7 +138,7 @@
 
     <table id="table-header-blue">
       <thead>
-        <tr >
+        <tr>
           <th class="col-no">No</th>
           <th class="col-dateTime">Date/Time</th>
           <th class="col-deliveryDetail">Delivery Detail</th>
@@ -155,7 +155,30 @@
           <td>{{ order.totalAmount }}</td>
           <td>{{ order.status }}</td>
           <td>
-            <img class="oder-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">
+            
+              <img class="oder-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">
+
+            
+              <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
+                Cooking
+              </button>
+              <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
+                Delevery
+              </button>
+              <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
+                Finish
+              </button>
+
+              <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
+                Cancel Order
+              </button>
+  
+
+
+
+
+
+
 
           </td>
         </tr>

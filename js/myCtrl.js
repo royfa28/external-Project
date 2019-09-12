@@ -18,7 +18,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
   });
 
   $scope.setCheckOrderInterval = function () {
-    setInterval(function(){ $scope.getAllOrder(); }, 3000);
+    setInterval(function(){ $scope.getAllOrder(); }, 1000);
   }
 
   // get all order
@@ -30,6 +30,20 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       }, function myError(response) {
         alert("Get all order fail.");
       });
+  }
+
+  // change order status
+  $scope.changeOrderStatus = function(id,status){
+    $http.put($scope.URL + "/api/orders/update/orderStatus",{
+      id: id,
+      status: status
+    })
+    .then(function mySuccess(response) {
+      $scope.getAllOrder();
+      console.log(response);
+    }, function myError(response) {
+      alert("update order status fail.");
+    });
   }
 
 
