@@ -19,11 +19,11 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.getOrderList();
     $scope.setCheckOrderInterval();
 
-    
+
   });
 
   $scope.setCheckOrderInterval = function () {
-    setInterval(function(){ $scope.getAllOrder(); }, 3000);
+    setInterval(function(){ $scope.getAllOrderByCurrentDate(); }, 3000);
 
   }
 
@@ -94,7 +94,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       status: status
     })
     .then(function mySuccess(response) {
-      $scope.getAllOrder();
+      $scope.getAllOrderByCurrentDate();
       console.log(response);
     }, function myError(response) {
       alert("update order status fail.");

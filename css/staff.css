@@ -378,7 +378,6 @@ body {
 .orderList .order-action {
 	width: 120px;
 	padding: 8px;
-	border: 1px solid red;
 }
 .orderList .order-action button {
 	width: 90px;
