@@ -17,8 +17,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.getAllOrderByCurrentDate();
     $scope.getAllDeliveryAddress();
     $scope.getOrderList();
-    //$scope.setCheckOrderInterval();
-
+    $scope.setCheckOrderInterval();
 
   });
 

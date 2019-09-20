@@ -361,7 +361,8 @@ body {
 	width: 150px;
 	padding: 8px;
 	text-align: center;
-	align-self: center
+	align-self: center;
+
 }
 .orderList .order-status {
 	font-size: 24px;
