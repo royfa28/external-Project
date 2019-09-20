@@ -140,66 +140,64 @@
     <div class="title">Order Management</div>
 
     <div class="orderList" ng-repeat="order in orders">
-      <div class="order-number">
-        <div class="n">{{ $index +1 }}</div>
-      </div>
-      <div class="order-detail">
-        <ul>
-          <li class="order-datetime">
-            <div class="element">ORDER TIME:</div>
-            <div>{{ order.orderDate | date: 'dd/MM/yy hh:mm' }}</div>
-          </li>
+        <div class="order-number" ng-if="order.status!='Finish'">
+          <div class="n">{{ $index +1 }}</div>
+        </div>
+        <div class="order-detail">
+          <ul>
+            <li class="order-datetime">
+              <div class="element">ORDER TIME:</div>
+              <div>{{ order.orderDate | date: 'dd/MM/yy hh:mm' }}</div>
+            </li>
 
-          <li class="order-list">
-            <div class="element">ORDER DETAIL:</div>
-            <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
-              {{deliveryAddress.contactName}} Telephone: {{deliveryAddress.telephone}}
-              <br>{{deliveryAddress.address}}
-            </div>
-          </li>
-          <li>
-            <div ng-repeat="item in orderList | filter: {orderId: order.id}"
-            style="padding-top: 8px; padding-bottom: 8px;">
-              {{item.qty}} x
-              {{item.menuName}}
-              <div ng-if="item.meatTypeId">({{item.meatTypeId}})</div>
-              <div style="width: 300px; font-size: 12px;">Price: {{item.price | number:2 }}</div>
-              <div style="width: 300px; font-size: 12px;">Amount: ${{item.amount | number:2 }}</div>
-              
-              
-            </div>
-          </li>
-        </ul>
-      </div>
-
-      <div class="order-totalAmount">
-        {{order.totalAmount | number:2}}
-      </div>
-
-      <div class="order-status">
-        <img class="order-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">{{order.status}}
-      </div>
-
-      <div class="order-action">
+            <li class="order-list">
+              <div class="element">ORDER DETAIL:</div>
+              <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
+                {{deliveryAddress.contactName}} Telephone: {{deliveryAddress.telephone}}
+                <br>{{deliveryAddress.address}}
+              </div>
+            </li>
+            <li>
+              <div ng-repeat="item in orderList | filter: {orderId: order.id}" style="padding-top: 8px; padding-bottom: 8px;">
+                {{item.qty}} x
+                {{item.menuName}}
+                <div ng-if="item.meatTypeId">({{item.meatTypeId}})</div>
+                <div style="width: 300px; font-size: 12px;">Price: {{item.price | number:2 }}</div>
+                <div style="width: 300px; font-size: 12px;">Amount: ${{item.amount | number:2 }}</div>
 
 
-        <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
-          Cooking
-        </button>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-        <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
-          Delevery
-        </button>
+        <div class="order-totalAmount">
+          {{order.totalAmount | number:2}}
+        </div>
 
-        <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
-          Finish
-        </button>
+        <div class="order-status">
+          <img class="order-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">{{order.status}}
+        </div>
 
-        <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
-          Cancel
-        </button>
-      </div>
+        <div class="order-action">
 
+
+          <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
+            Cooking
+          </button>
+
+          <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
+            Delevery
+          </button>
+
+          <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
+            Finish
+          </button>
+
+          <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
+            Cancel
+          </button>
+        </div>
     </div>
 
     <!--
