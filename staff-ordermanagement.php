@@ -4,7 +4,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>3 Season Thai - staff order management page</title>
-  <link rel="stylesheet" type="text/css" href="css/staff.css">
+  <link rel="stylesheet" type="text/css" href="./css/staff.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 
   <!-- Add loading overlay user to show loading sign when need user waiting for the process -->
@@ -133,13 +133,78 @@
 
 <body onFocus="parent_disable();" onclick="parent_disable();">
 
-<!-- load alert audio -->
-<audio id="alert-sound" src="audios/alert.mp3" preload="auto"></audio>
+  <!-- load alert audio -->
+  <audio id="alert-sound" src="audios/alert.mp3" preload="auto"></audio>
 
   <div ng-app="myApp" ng-controller="OrderManagementCtrl">
     <div class="title">Order Management</div>
 
+    <div class="orderList" ng-repeat="order in orders">
+      <div class="order-number">
+        <div class="n">{{ $index +1 }}</div>
+      </div>
+      <div class="order-detail">
+        <ul>
+          <li class="order-datetime">
+            <div class="element">ORDER TIME:</div>
+            <div>{{ order.orderDate | date: 'dd/MM/yy hh:mm' }}</div>
+          </li>
+
+          <li class="order-list">
+            <div class="element">ORDER DETAIL:</div>
+            <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
+              {{deliveryAddress.contactName}} Telephone: {{deliveryAddress.telephone}}
+              <br>{{deliveryAddress.address}}
+            </div>
+          </li>
+          <li>
+            <div ng-repeat="item in orderList | filter: {orderId: order.id}"
+            style="padding-top: 8px; padding-bottom: 8px;">
+              {{item.qty}} x
+              {{item.menuName}}
+              <div ng-if="item.meatTypeId">({{item.meatTypeId}})</div>
+              <div style="width: 300px; font-size: 12px;">Price: {{item.price | number:2 }}</div>
+              <div style="width: 300px; font-size: 12px;">Amount: ${{item.amount | number:2 }}</div>
+              
+              
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="order-totalAmount">
+        {{order.totalAmount | number:2}}
+      </div>
+
+      <div class="order-status">
+        <img class="order-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">{{order.status}}
+      </div>
+
+      <div class="order-action">
+
+
+        <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
+          Cooking
+        </button>
+
+        <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
+          Delevery
+        </button>
+
+        <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
+          Finish
+        </button>
+
+        <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
+          Cancel
+        </button>
+      </div>
+
+    </div>
+
+    <!--
     <table id="table-header-blue">
+
       <thead>
         <tr>
           <th class="col-no">No</th>
@@ -152,43 +217,55 @@
       </thead>
       <tbody>
         <tr ng-repeat="order in orders">
+
           <td>{{ $index +1 }}</td>
           <td>{{ order.orderDate | date: 'dd/MM/yy hh:mm' }}</td>
           <td>
             <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
-            {{deliveryAddress.contactName}}   Telephone: {{deliveryAddress.telephone}} 
-            <br>{{deliveryAddress.address}}
-            
-            
+              {{deliveryAddress.contactName}} Telephone: {{deliveryAddress.telephone}}
+              <br>{{deliveryAddress.address}}
+              <br><br>
+
+
+
+            </div>
+            <div ng-repeat="item in orderList | filter: {orderId: order.id}">
+              {{item.qty}} X
+              {{item.menuName}}
+              <div ng-if="item.meatTypeId">({{item.meatTypeId}})</div>
+
+
+              {{item.price | number:2 }}
+              {{item.amount | number:2 }}
             </div>
           </td>
-          <td>{{ order.totalAmount }}</td>
+          <td>{{ order.totalAmount | number:2 }}</td>
           <td>{{ order.status }}</td>
           <td>
-            
-              <img class="oder-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">
 
-            
-              <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
-                Cooking
-              </button>
-              <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
-                Delevery
-              </button>
-              <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
-                Finish
-              </button>
+            <img class="oder-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">
 
-              <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
-                Cancel Order
-              </button>
+            <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
+              Cooking
+            </button>
+
+            <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
+              Delevery
+            </button>
+
+            <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
+              Finish
+            </button>
+
+            <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
+              Cancel Order
+            </button>
 
           </td>
         </tr>
       </tbody>
     </table>
-
-
+  -->
 
     <!-- The Notification Modal -->
     <div id="modal" class="modal">

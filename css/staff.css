@@ -301,10 +301,7 @@ body {
 
 }
 
-.oder-alert-img {
-	width: 24px;
-	height: 24px;
-}
+
 
 /*
 .orders-table {
@@ -317,6 +314,75 @@ body {
 .orders-table .col-status { width: 100px;}
 .orders-table .col-action { width: 200px;}
 */
+
+.orderList {
+	display: flex;
+	flex-direction: row;
+	margin: 16px; 
+	padding: 8px;
+	background-color: beige;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.orderList .order-number {
+	font-size: 24px;
+	color: red;
+	width: 60px;
+	padding: 8px;
+	text-align: center;
+	align-self: center;
+	background-color: yellow;
+
+}
+.orderList .order-detail {
+	font-size: 16px;
+	width: 100%;
+	padding: 8px;
+}
+.orderList .order-detail ul {
+	padding-inline-start: 0px;
+}
+.orderList .order-detail ul li {
+	display: block;
+}
+.orderList .order-detail .order-datetime {
+	margin-bottom: 16px;
+}
+.orderList .order-detail .order-list {
+	display: flex;
+	flex-direction: column;
+}
+.orderList .order-detail .element {
+	float: left;
+	margin-right: 8px;
+	color: grey;
+}
+.orderList .order-totalAmount {
+	font-size: 24px;
+	width: 150px;
+	padding: 8px;
+	text-align: center;
+	align-self: center
+}
+.orderList .order-status {
+	font-size: 24px;
+	width: 150px;
+	padding: 8px;
+	text-align: center;
+	align-self: center
+}
+.order-alert-img {
+	width: 24px;
+	height: 24px;
+}
+.orderList .order-action {
+	width: 120px;
+	padding: 8px;
+	border: 1px solid red;
+}
+.orderList .order-action button {
+	width: 90px;
+	height: 50px;
+}
 
 
 

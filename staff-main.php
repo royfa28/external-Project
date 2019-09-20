@@ -35,7 +35,7 @@
 
 			<ul>
 				<li onclick="showMenuItemPage();">MENU ITEMS</li>	
-				<li onclick="showOrderManagementPage();">ORDER MANAGEMENET</li>
+				<li onclick="showOrderManagementPage();">ORDER MANAGEMENT</li>
 				<li onclick="showSettingPage();">SETTING</li>
 			</ul>
 		
