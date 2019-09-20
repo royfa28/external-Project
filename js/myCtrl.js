@@ -19,6 +19,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.getOrderList();
     $scope.setCheckOrderInterval();
 
+    
   });
 
   $scope.setCheckOrderInterval = function () {
