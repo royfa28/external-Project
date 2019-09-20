@@ -315,6 +315,9 @@ body {
 .orders-table .col-action { width: 200px;}
 */
 
+.order-container {
+	visibility: hidden;
+}
 .orderList {
 	display: flex;
 	flex-direction: row;
@@ -324,7 +327,7 @@ body {
 	box-shadow: 0 4px 8px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 .orderList .order-number {
-	font-size: 24px;
+	font-size: 20px;
 	color: red;
 	width: 60px;
 	padding: 8px;
@@ -346,15 +349,23 @@ body {
 }
 .orderList .order-detail .order-datetime {
 	margin-bottom: 16px;
+	float: left;
+	margin-right: 20px;
+}
+.orderList .order-detail .order-customer {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
 }
 .orderList .order-detail .order-list {
 	display: flex;
 	flex-direction: column;
 }
-.orderList .order-detail .element {
-	float: left;
+.orderList .order-detail .label 
+{
+	font-size: 12px;
 	margin-right: 8px;
-	color: grey;
+	color: dodgerblue;
 }
 .orderList .order-totalAmount {
 	font-size: 24px;
@@ -378,10 +389,15 @@ body {
 .orderList .order-action {
 	width: 120px;
 	padding: 8px;
+	background-color: #007acc;
 }
 .orderList .order-action button {
 	width: 90px;
 	height: 50px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	border-radius: 5px;
+	font-size: 14px;
 }
 
 

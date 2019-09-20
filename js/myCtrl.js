@@ -19,8 +19,13 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.getOrderList();
     $scope.setCheckOrderInterval();
 
-
+    // display content
+    $scope.displayContent();
   });
+
+  $scope.displayContent = function() {
+    document.getElementById("order-container").style.visibility="visible";
+  }
 
   $scope.setCheckOrderInterval = function () {
     setInterval(function(){ $scope.getAllOrderByCurrentDate(); }, 3000);
@@ -99,6 +104,14 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     }, function myError(response) {
       alert("update order status fail.");
     });
+  }
+
+  $scope.cancelOrder = function(id){
+    console.log(id);
+    if (!confirm("Do you need to delete order?"))
+      return;
+
+    $scope.changeOrderStatus(id,'Cancel');
   }
 
   // Sort Table function
