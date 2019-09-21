@@ -41,7 +41,6 @@
 
 	<div id="main-title" class="main-title">
 		<div id="businessName">3 Season Thai</div>
-		<div id="user" class="user">User: </div>
 	</div>
 
 
