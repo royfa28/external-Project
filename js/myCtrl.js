@@ -8,11 +8,14 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     // Set start filter
     $scope.mySortType = "true";
     $scope.findStatus = "";
-    
+
     $scope.orders = [];
     $scope.orderDetails = [];
     $scope.deliveryAddresses = [];
     $scope.orderList = [];
+    $scope.setting = [];
+
+    $scope.getSettingDetail();
 
     $scope.getAllOrderByCurrentDate();
     $scope.getAllDeliveryAddress();
@@ -21,18 +24,59 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
 
     // display content
     $scope.displayContent();
+
+
   });
 
-  $scope.displayContent = function() {
-    document.getElementById("order-container").style.visibility="visible";
+  $scope.getSettingDetail = function () {
+    $http.get($scope.URL + "/api/settings/get/settingDetail")
+      .then(function mySuccess(response) {
+        $scope.setting = response.data.data[0];
+       
+        // set toggle status
+        if ($scope.setting.isOpen == 0)
+          document.getElementById("chkOnlineStatus").checked = false;
+        else
+          document.getElementById("chkOnlineStatus").checked = true;
+
+      }, function myError(response) {
+        alert("Get setting detail fail.");
+      });
+  }
+
+  $scope.onlineStatusClick = function (event) {
+    // change isopen value
+    if (event.target.checked == true)
+      $scope.setting.isOpen = 1;
+    else
+      $scope.setting.isOpen = 0;
+
+    // update online status
+    $scope.updateOnlineStatus($scope.setting.isOpen);
+
+  }
+
+  $scope.updateOnlineStatus = function (statusValue) {
+    $http.put($scope.URL + "/api/settings/update/onlineStatus", {
+      status: statusValue
+    })
+      .then(function mySuccess(response) {
+
+      }, function myError(response) {
+        alert("update online status fail.");
+      });
+  }
+
+  $scope.displayContent = function () {
+    document.getElementById("order-container").style.visibility = "visible";
   }
 
   $scope.setCheckOrderInterval = function () {
-    setInterval(function(){ $scope.getAllOrderByCurrentDate(); }, 3000);
+    setInterval(function () { $scope.getAllOrderByCurrentDate(); }, 3000);
 
   }
 
-  $scope.playAlert = function(){
+  $scope.playAlert = function () {
     document.getElementById('alert-sound').play();
   }
 
@@ -41,18 +85,17 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/all/orderByCurrentDate")
       .then(function mySuccess(response) {
         $scope.orders = response.data.data;
-        //console.log($scope.orders);
-        
+
         // check if have new order in the list,
         // aleart sound
-        var newOrders = $scope.orders.filter((item)=>{
+        var newOrders = $scope.orders.filter((item) => {
           return item.status == 'New Order';
         });
-      
-        if (newOrders.length > 0){
+
+        if (newOrders.length > 0) {
           $scope.playAlert();
         }
-        
+
       }, function myError(response) {
         alert("Get all order fail.");
       });
@@ -64,7 +107,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       .then(function mySuccess(response) {
         $scope.orderDetails = response.data.data;
         console.log($scope.orderDetails);
-        
+
       }, function myError(response) {
         alert("Get all order detail fail.");
       });
@@ -75,7 +118,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/all/deliveryAddress")
       .then(function mySuccess(response) {
         $scope.deliveryAddresses = response.data.data;
-        
+
       }, function myError(response) {
         alert("Get all delivery address fail.");
       });
@@ -86,32 +129,32 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/all/orderList")
       .then(function mySuccess(response) {
         $scope.orderList = response.data.data;
-        
+
       }, function myError(response) {
         alert("Get all menu fail.");
       });
   }
 
   // change order status
-  $scope.changeOrderStatus = function(id,status){
-    $http.put($scope.URL + "/api/orders/update/orderStatus",{
+  $scope.changeOrderStatus = function (id, status) {
+    $http.put($scope.URL + "/api/orders/update/orderStatus", {
       id: id,
       status: status
     })
-    .then(function mySuccess(response) {
-      $scope.getAllOrderByCurrentDate();
-      console.log(response);
-    }, function myError(response) {
-      alert("update order status fail.");
-    });
+      .then(function mySuccess(response) {
+        $scope.getAllOrderByCurrentDate();
+        console.log(response);
+      }, function myError(response) {
+        alert("update order status fail.");
+      });
   }
 
-  $scope.cancelOrder = function(id){
+  $scope.cancelOrder = function (id) {
     console.log(id);
     if (!confirm("Do you need to delete order?"))
       return;
 
-    $scope.changeOrderStatus(id,'Cancel');
+    $scope.changeOrderStatus(id, 'Cancel');
   }
 
   // Sort Table function

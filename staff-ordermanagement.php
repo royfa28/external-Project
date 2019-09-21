@@ -195,7 +195,7 @@
         </button>
 
         <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
-          Delevery
+          Delivery
         </button>
 
         <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
