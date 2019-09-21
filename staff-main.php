@@ -9,7 +9,7 @@
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 </head>
 
-<body class="mainBody">
+<body class="mainBody" ng-app="myApp" ng-controller="StaffMainCtrl">
 	<div id="main-header" class="main-header">
 		<div class="logo">
 			<img id="imgLogo" src="images/logo.jpg">
@@ -20,7 +20,7 @@
 
 		<div class="logout">
 
-			<div ng-app="myApp" ng-controller="OrderManagementCtrl"  class="switch-openstatus">
+			<div class="switch-openstatus">
 				<label class="switch">
 					<input 
 						id="chkOnlineStatus" 
@@ -32,7 +32,7 @@
 				<label id="onlineStatus">{{ setting.isOpen ? 'Online open':'Closed' }}</label>
 			</div>
 			<div>
-				<button class="btn-logout" onclick="logout();">Logout</button>
+				<button class="btn-logout" ng-click="logout();">Logout</button>
 			</div>
 
 		</div>
@@ -41,7 +41,7 @@
 
 	<div id="main-title" class="main-title">
 		<div id="businessName">3 Season Thai</div>
-		<div class="user">User: <?php echo $_SESSION['user']; ?></div>
+		<div id="user" class="user">User: </div>
 	</div>
 
 
