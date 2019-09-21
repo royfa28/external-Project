@@ -17,7 +17,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
 
     $scope.getSettingDetail();
 
-    $scope.getAllOrderByCurrentDate();
+    $scope.getAllActiveOrder();
     $scope.getAllDeliveryAddress();
     $scope.getOrderList();
     $scope.setCheckOrderInterval();
@@ -72,7 +72,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
   }
 
   $scope.setCheckOrderInterval = function () {
-    setInterval(function () { $scope.getAllOrderByCurrentDate(); }, 3000);
+    setInterval(function () { $scope.getAllActiveOrder(); }, 3000);
 
   }
 
@@ -81,8 +81,8 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
   }
 
   // get all order
-  $scope.getAllOrderByCurrentDate = function () {
-    $http.get($scope.URL + "/api/orders/get/all/orderByCurrentDate")
+  $scope.getAllActiveOrder = function () {
+    $http.get($scope.URL + "/api/orders/get/all/activeOrder")
       .then(function mySuccess(response) {
         $scope.orders = response.data.data;
 
@@ -142,7 +142,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       status: status
     })
       .then(function mySuccess(response) {
-        $scope.getAllOrderByCurrentDate();
+        $scope.getAllActiveOrder();
         console.log(response);
       }, function myError(response) {
         alert("update order status fail.");
@@ -186,7 +186,45 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
 
 });
 
+app.controller('UserCtrl', function ($scope, $http) {
 
+  angular.element(document).ready(function () {
+    $scope.URL = 'http://ec2-3-14-6-238.us-east-2.compute.amazonaws.com:3000';
+
+    $scope.username = "";
+    $scope.password = "";
+
+  });
+
+  $scope.checkUserPermission = function() {
+    // check if not have username and password
+    if ($scope.username=="" || $scope.password=="")
+    {
+      alert("Please provide username and password.");
+      return;
+    }
+    // check permission by calling WebAPI and pass username and password
+    $http.post($scope.URL + "/api/users/checkPermission",{
+      username: $scope.username,
+      password: $scope.password
+    })
+      .then(function mySuccess(response) {
+      
+        // check permission from data
+        if (response.data.permission == false)
+        {
+          alert("You don't have permission. Please try again");
+          return;
+        }
+
+        // open staff page
+        window.open ('staff-main.php','_self',false);
+
+      }, function myError(response) {
+        alert("Check permission fail.");
+      });
+  }
+});
 
 
 
