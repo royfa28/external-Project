@@ -4,9 +4,9 @@ let modal = JSON.parse(localStorage.getItem('modal')) || [];
 const modalDOM = document.querySelector('.modal');
 const addToModalButtonDOM = document.querySelectorAll('[data-action="ADD_TO_MODAL"]');
 
-addToModal.forEach(addToModal => {
-    addToModal.addEventListener('click', () => {
-      const modalDOM = addToModal.parentNode;
+addToModalButtonDOM.forEach(addToModalButtonDOM => {
+  addToModalButtonDOM.addEventListener('click', () => {
+      const modalDOM = addToModalButtonDOM.parentNode;
       const menu = {
         name: modalDOM.querySelector('.menu_name').innerText,
         description: modalDOM.querySelector('.menu_description').innerText,
@@ -50,3 +50,4 @@ cartDOM.insertAdjacentHTML(
 
 addCartFooter();
 }
+

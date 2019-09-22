@@ -17,6 +17,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $scope.findStatus = "";
 
     $scope.orders = [];
+<<<<<<< HEAD
     $scope.orderDetails = [];
     $scope.deliveryAddresses = [];
     $scope.orderList = [];
@@ -43,6 +44,22 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
   }
 
   $scope.playAlert = function () {
+=======
+    $scope.deliveryAddresses = [];
+
+    $scope.getAllOrder();
+    $scope.getAllDeliveryAddress();
+    $scope.setCheckOrderInterval();
+
+  });
+
+  $scope.setCheckOrderInterval = function () {
+    setInterval(function(){ $scope.getAllOrder(); }, 3000);
+
+  }
+
+  $scope.playAlert = function(){
+>>>>>>> modal fix
     document.getElementById('alert-sound').play();
   }
 
@@ -51,6 +68,7 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/all/activeOrder")
       .then(function mySuccess(response) {
         $scope.orders = response.data.data;
+<<<<<<< HEAD
 
         // check if have new order in the list,
         // aleart sound
@@ -62,11 +80,26 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
           $scope.playAlert();
         }
 
+=======
+        console.log($scope.orders);
+        
+        // check if have new order in the list,
+        // aleart sound
+        var newOrders = $scope.orders.filter((item)=>{
+          return item.status == 'New Order';
+        });
+      
+        if (newOrders.length > 0){
+          $scope.playAlert();
+        }
+        
+>>>>>>> modal fix
       }, function myError(response) {
         alert("Get all order fail.");
       });
   }
 
+<<<<<<< HEAD
   // get all order detail
   $scope.getAllOrderDetail = function () {
     $http.get($scope.URL + "/api/orders/get/all/orderDetail")
@@ -79,17 +112,24 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
       });
   }
 
+=======
+>>>>>>> modal fix
   // get all delivery address
   $scope.getAllDeliveryAddress = function () {
     $http.get($scope.URL + "/api/orders/get/all/deliveryAddress")
       .then(function mySuccess(response) {
         $scope.deliveryAddresses = response.data.data;
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> modal fix
       }, function myError(response) {
         alert("Get all delivery address fail.");
       });
   }
 
+<<<<<<< HEAD
   // get all menu
   $scope.getOrderList = function () {
     $http.get($scope.URL + "/api/orders/get/all/orderList")
@@ -122,6 +162,22 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
 
     $scope.changeOrderStatus(id, 'Cancel');
   }
+=======
+  // change order status
+  $scope.changeOrderStatus = function(id,status){
+    $http.put($scope.URL + "/api/orders/update/orderStatus",{
+      id: id,
+      status: status
+    })
+    .then(function mySuccess(response) {
+      $scope.getAllOrder();
+      console.log(response);
+    }, function myError(response) {
+      alert("update order status fail.");
+    });
+  }
+
+>>>>>>> modal fix
 
   // Sort Table function
   $scope.orderByMe = function (name) {
