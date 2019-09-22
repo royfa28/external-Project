@@ -133,7 +133,6 @@
 
 <body onFocus="parent_disable();" onclick="parent_disable();">
 
-<<<<<<< HEAD
   <!-- load alert audio -->
   <audio id="alert-sound" src="audios/alert.mp3" preload="auto"></audio>
 
@@ -212,15 +211,6 @@
     <!--
     <table id="table-header-blue">
 
-=======
-<!-- load alert audio -->
-<audio id="alert-sound" src="audios/alert.mp3" preload="auto"></audio>
-
-  <div ng-app="myApp" ng-controller="OrderManagementCtrl">
-    <div class="title">Order Management</div>
-
-    <table id="table-header-blue">
->>>>>>> modal fix
       <thead>
         <tr>
           <th class="col-no">No</th>
@@ -238,7 +228,6 @@
           <td>{{ order.orderDate | date: 'dd/MM/yy hh:mm' }}</td>
           <td>
             <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
-<<<<<<< HEAD
               {{deliveryAddress.contactName}} Telephone: {{deliveryAddress.telephone}}
               <br>{{deliveryAddress.address}}
               <br><br>
@@ -277,34 +266,6 @@
             <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
               Cancel Order
             </button>
-=======
-            {{deliveryAddress.contactName}}   Telephone: {{deliveryAddress.telephone}} 
-            <br>{{deliveryAddress.address}}
-            
-            
-            </div>
-          </td>
-          <td>{{ order.totalAmount }}</td>
-          <td>{{ order.status }}</td>
-          <td>
-            
-              <img class="oder-alert-img" src="images/alert.gif" alt="alert" ng-if="order.status=='New Order'">
-
-            
-              <button id="cooking-btn" ng-click="changeOrderStatus(order.id,'Cooking');" ng-if="order.status=='New Order'">
-                Cooking
-              </button>
-              <button id="delivery-btn" ng-click="changeOrderStatus(order.id,'Delivery');" ng-if="order.status=='Cooking'">
-                Delevery
-              </button>
-              <button id="finish-btn" ng-click="changeOrderStatus(order.id,'Finish');" ng-if="order.status=='Delivery'">
-                Finish
-              </button>
-
-              <button id="cancel-btn" ng-click="changeOrderStatus(order.id,'Cancel');" ng-if="order.status!='Cancel' && order.status!='Finish'">
-                Cancel Order
-              </button>
->>>>>>> modal fix
 
           </td>
         </tr>

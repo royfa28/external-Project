@@ -373,22 +373,7 @@ input:checked + .slider:before {
 	border-radius: 10px;
 }
 
-.oder-alert-img {
-	width: 24px;
-	height: 24px;
-}
 
-/*
-.orders-table {
-	width: 100%;
-}
-.orders-table .col-no { width: 80px;}
-.orders-table .col-dateTime { width: 120px;}
-.orders-table .col-deliveryDetail { width: 400px;}
-.orders-table .col-totalAmount { width: 160px;}
-.orders-table .col-status { width: 100px;}
-.orders-table .col-action { width: 200px;}
-*/
 
 /*
 .orders-table {
