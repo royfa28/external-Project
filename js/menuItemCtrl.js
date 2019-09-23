@@ -66,6 +66,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
+//ADD NEW MEAT TYPE
   $scope.addNewMeat = function(meatName){
       console.log(meatName);
     $http.post($scope.URL + "/api/addNew/meatType",{
@@ -80,6 +81,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
+//ADD NEW MENU TYPE
   $scope.addNewMenuType = function(newTypeName){
     console.log(newTypeName);
     $http.post($scope.URL + "/api/addNew/menuType",{
@@ -127,6 +129,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
+//DELETE MENUTYPE
   $scope.deleteMenuType = function(menuTypeID){
     $http.delete($scope.URL + "/api/delete/menuType/" + menuTypeID)
     .then(function mySuccess(response) {
@@ -137,6 +140,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
+//DELETE MEATTYPE
   $scope.deleteMeatType = function(meatTypeID){
       console.log(meatTypeID);
     $http.delete($scope.URL + "/api/delete/meatType/" + meatTypeID)

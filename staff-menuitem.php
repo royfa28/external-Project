@@ -78,6 +78,7 @@
                     <div class="viewSide">
                         <form>
                             <fieldset>
+<!-- EDIT MENU TYPE -->
                                 <legend>Edit Menu Categories</legend>
                                 <div style="white-space:nowrap;">
                                     <label>Name:</label>
@@ -96,6 +97,7 @@
                                             <td>{{menuType.name}}</td>
                                             <td style="white-space:nowrap;">
                                                 <button type="submit">EDIT</button>
+<!-- DELETE MENU TYPE BUTTON -->
                                                 <button type="submit" ng-click="deleteMenuType(menuType.id)">DELETE</button>
                                             </td>
                                         </tr>
@@ -106,6 +108,7 @@
 
                         <form>
                             <fieldset>
+<!-- EDIT MEAT TYPE -->
                                 <legend>Edit Meat types</legend>
                                 <div style="white-space:nowrap;">
                                     <label>Name:</label>
@@ -124,6 +127,7 @@
                                             <td>{{meatType.name}}</td>
                                             <td style="white-space:nowrap;">
                                                 <button type="submit">EDIT</button>
+<!-- DELETE MEAT TYPE BUTTON -->
                                                 <button type="submit" ng-click="deleteMeatType(meatType.id)">DELETE</button>
                                             </td>
                                         </tr>
