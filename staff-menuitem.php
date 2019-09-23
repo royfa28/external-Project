@@ -19,6 +19,21 @@
             .viewNormal{
                 flex: 2 50%;
             }
+            button{
+                cursor: pointer;
+            }
+            .buttonGreen{
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+            }
+            .buttonRed{
+                background-color: #f44336;
+                color: white;
+                border: none;
+                border-radius: 4px;
+            }
         </style>
 
 
@@ -44,6 +59,11 @@
                             <label>Price:</label>
                             <input ng-model="addPrice" style="margin-left:4.75em" type="text" placeholder="0.00"> <br>
 
+                            <!-- <label>Meat Options:</label>
+                            <select style="margin-left:1em" ng-model="addMeatType" ng-options="meatType.name for meatType in meatTypes">
+                                <option value="">-- None --</option>
+                            </select> -->
+
                             <label>Menu Type:</label>
                             <select style="margin-left:1em" ng-model="addMenuType" ng-options="menuType.name for menuType in menuTypes">
                                 <option value="">-- Choose Menu Type --</option>
@@ -55,33 +75,70 @@
                     </form>
                 </div>
 
-                <div class="viewNormal">
-                    <form>
-                        <fieldset>
-                            <legend>Add Meat Type</legend>
-                            <label>Name:</label>
-                            <input ng-model="addMeatName" style="margin-left:4.25em" type="text" placeholder="chicken, beef, pork, etc.">
-                            <button type="submit" ng-click="addNewMeat(addMeatName)">ADD</button>
-                        </fieldset>
-                    </form>
+                    <div class="viewSide">
+                        <form>
+                            <fieldset>
+                                <legend>Edit Menu Categories</legend>
+                                <div style="white-space:nowrap;">
+                                    <label>Name:</label>
+                                    <input ng-model="addMenuTypeName" type="text" placeholder="Appetizers, Main, Dessert, etc.">
+                                <button type="submit" ng-click="addNewMenuType(addMenuTypeName)">ADD NEW</button>
+                                </div>
 
-                    <form>
-                        <fieldset>
-                            <legend>Add Menu Type</legend>
-                            <label>Name:</label>
-                            <input ng-model="addMenuTypeName" style="margin-left:4.25em" type="text" placeholder="Appetizers, Main, Dessert, etc.">
-                            <button type="submit" ng-click="addNewMenuType(addMenuTypeName)">ADD</button>
-                        </fieldset>
-                    </form>
-                </div>
+                                <table id="pageLayout">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="menuType in menuTypes">
+                                            <td>{{menuType.name}}</td>
+                                            <td style="white-space:nowrap;">
+                                                <button type="submit">EDIT</button>
+                                                <button type="submit" ng-click="deleteMenuType(menuType.id)">DELETE</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+                            </fieldset>
+                        </form>
+
+                        <form>
+                            <fieldset>
+                                <legend>Edit Meat types</legend>
+                                <div style="white-space:nowrap;">
+                                    <label>Name:</label>
+                                    <input ng-model="addMeatName" type="text" placeholder="chicken, beef, pork, etc.">
+                                    <button type="submit" ng-click="addNewMeat(addMeatName)">ADD NEW</button>
+                                </div>
+
+                                <table id="pageLayout">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="meatType in meatTypes">
+                                            <td>{{meatType.name}}</td>
+                                            <td style="white-space:nowrap;">
+                                                <button type="submit">EDIT</button>
+                                                <button type="submit" ng-click="deleteMeatType(meatType.id)">DELETE</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>  
+                            </fieldset>
+                        </form>
+                    </div>
+
             </div>
 
 
 <!-- UPDATE EDIT DELETE -->
 
-            <div class="viewSide">
-
-            </div>
+            
 
             <form>
                 <fieldset>
@@ -95,11 +152,11 @@
                                 <th>Availability</th>
                                 <!-- <th>Meat Type</th>
                                 <th>Menu Type</th> -->
-                                <th> <select> <option>Filter</option> </select> </th>
+                                <th><input ng-model="searchText.name" placeholder="Search..."></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="menu in menus">
+                            <tr ng-repeat="menu in menus | filter: searchText:strict">
                                 <td>{{menu.name}}</td>
                                 <td>{{menu.description}}</td>
                                 <td>{{menu.price}}</td>
@@ -108,8 +165,8 @@
                                 <!-- <td>{{menu.isSelectMeatChoice}}</td>
                                 <td>{{menu.menuTypeId}}</td> -->
                                 <td style="white-space:nowrap;">
-                                    <button ng-click="changeAvailability(menu.id, menu.name, menu.description, menu.pictureName, menu.price, '0', menu.isSelectMeatChoice, menu.menuTypeId)" ng-if="menu.isAvailable == 1">AVAILABLE</button>
-                                    <button ng-click="changeAvailability(menu.id, menu.name, menu.description, menu.pictureName, menu.price, '1', menu.isSelectMeatChoice, menu.menuTypeId)" ng-if="menu.isAvailable == 0">SOLD OUT</button>
+                                    <button class="buttonGreen" ng-click="changeAvailability(menu.id, menu.name, menu.description, menu.pictureName, menu.price, '0', menu.isSelectMeatChoice, menu.menuTypeId)" ng-if="menu.isAvailable == 1">AVAILABLE</button>
+                                    <button class="buttonRed" ng-click="changeAvailability(menu.id, menu.name, menu.description, menu.pictureName, menu.price, '1', menu.isSelectMeatChoice, menu.menuTypeId)" ng-if="menu.isAvailable == 0">SOLD OUT</button>
                                     <button type="submit">EDIT</button>
                                     <button type="submit" ng-click="deleteMenuItem(menu.id)">DELETE</button>
                                 </td>

@@ -9,7 +9,10 @@ app.controller('MenuItemController', function ($scope, $http) {
     $scope.getMenus();
 
     $scope.menuTypes = [];
-    $scope.getMenuType();
+    $scope.getMenuTypes();
+
+    $scope.meatTypes = [];
+    $scope.getMeatTypes();
   });
 
   $scope.getMenus = function(){
@@ -22,13 +25,23 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
-  $scope.getMenuType = function(){
+  $scope.getMenuTypes = function(){
     $http.get($scope.URL + "/api/menus/get/all/menuType")
     .then(function mySuccess(response) {
         $scope.menuTypes = response.data.data;
         //console.log($scope.menuTypes);
     }, function myError(response) {
         alert("Failed to get menu type");
+    });
+  }
+
+  $scope.getMeatTypes = function(){
+    $http.get($scope.URL + "/api/menus/get/all/meatType")
+    .then(function mySuccess(response) {
+        $scope.meatTypes = response.data.data;
+        //console.log($scope.menus);
+    }, function myError(response) {
+        alert("Failed to get meat types");
     });
   }
 
@@ -44,7 +57,7 @@ app.controller('MenuItemController', function ($scope, $http) {
       menuTypeId: menuTypeID
     })
     .then(function mySuccess(response) {
-      console.log(response);
+      //console.log(response);
       alert( name + " has been added");
       $scope.getMenus();
     }, function myError(response) {
@@ -54,11 +67,13 @@ app.controller('MenuItemController', function ($scope, $http) {
   }
 
   $scope.addNewMeat = function(meatName){
+      console.log(meatName);
     $http.post($scope.URL + "/api/addNew/meatType",{
       name: meatName
     })
     .then(function mySuccess(response) {
       alert( meatName + " has been added");
+      $scope.getMeatTypes();
     }, function myError(response) {
       console.log(response);
       alert("Failed to add new meat type.");
@@ -66,11 +81,13 @@ app.controller('MenuItemController', function ($scope, $http) {
   }
 
   $scope.addNewMenuType = function(newTypeName){
+    console.log(newTypeName);
     $http.post($scope.URL + "/api/addNew/menuType",{
       name: newTypeName
     })
     .then(function mySuccess(response) {
       alert( newTypeName + " has been added");
+      $scope.getMenuTypes();
     }, function myError(response) {
       console.log(response);
       alert("Failed to add new menu type.");
@@ -105,6 +122,27 @@ app.controller('MenuItemController', function ($scope, $http) {
     .then(function mySuccess(response) {
       alert("menu item has been deleted");
       $scope.getMenus();
+    }, function myError(response) {
+      console.log(response);
+    });
+  }
+
+  $scope.deleteMenuType = function(menuTypeID){
+    $http.delete($scope.URL + "/api/delete/menuType/" + menuTypeID)
+    .then(function mySuccess(response) {
+      alert("menu Type has been deleted");
+      $scope.getMenuTypes();
+    }, function myError(response) {
+      console.log(response);
+    });
+  }
+
+  $scope.deleteMeatType = function(meatTypeID){
+      console.log(meatTypeID);
+    $http.delete($scope.URL + "/api/delete/meatType/" + meatTypeID)
+    .then(function mySuccess(response) {
+      alert("meat Type has been deleted");
+      $scope.getMeatTypes();
     }, function myError(response) {
       console.log(response);
     });
