@@ -69,7 +69,7 @@ app.controller('MenuItemController', function ($scope, $http) {
 //ADD NEW MEAT TYPE
   $scope.addNewMeat = function(meatName){
       console.log(meatName);
-    $http.post($scope.URL + "/api/addNew/meatType",{
+    $http.post($scope.URL + "/api/menus/addNew/meatType",{
       name: meatName
     })
     .then(function mySuccess(response) {
@@ -84,7 +84,7 @@ app.controller('MenuItemController', function ($scope, $http) {
 //ADD NEW MENU TYPE
   $scope.addNewMenuType = function(newTypeName){
     console.log(newTypeName);
-    $http.post($scope.URL + "/api/addNew/menuType",{
+    $http.post($scope.URL + "/api/menus/addNew/menuType",{
       name: newTypeName
     })
     .then(function mySuccess(response) {
@@ -131,7 +131,7 @@ app.controller('MenuItemController', function ($scope, $http) {
 
 //DELETE MENUTYPE
   $scope.deleteMenuType = function(menuTypeID){
-    $http.delete($scope.URL + "/api/delete/menuType/" + menuTypeID)
+    $http.delete($scope.URL + "/api/menus/delete/menuType/" + menuTypeID)
     .then(function mySuccess(response) {
       alert("menu Type has been deleted");
       $scope.getMenuTypes();
@@ -143,7 +143,7 @@ app.controller('MenuItemController', function ($scope, $http) {
 //DELETE MEATTYPE
   $scope.deleteMeatType = function(meatTypeID){
       console.log(meatTypeID);
-    $http.delete($scope.URL + "/api/delete/meatType/" + meatTypeID)
+    $http.delete($scope.URL + "/api/menus/delete/meatType/" + meatTypeID)
     .then(function mySuccess(response) {
       alert("meat Type has been deleted");
       $scope.getMeatTypes();
