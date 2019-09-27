@@ -32,7 +32,7 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
   });
 
   $scope.displayContent = function () {
-    document.getElementById("order-container").style.visibility = "visible";
+    document.getElementById("orderhistory-container").style.visibility = "visible";
   }
 
   // get all order

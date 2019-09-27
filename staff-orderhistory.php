@@ -134,52 +134,60 @@
 <body onFocus="parent_disable();" onclick="parent_disable();">
 
 
-  <div ng-app="myApp" ng-controller="OrderHistoryCtrl" id="order-container" class="order-container">
+  <div class="orderhistory" ng-app="myApp" ng-controller="OrderHistoryCtrl" id="orderhistory-container">
     <div class="title">Order History</div>
 
+    <div class="content">
+		<div>
+			<div>Summary per day</div>
+			<table class="table-summary table-header-blue">
+				<tr>
+					<th>No.</th>
+					<th>Date</th>
+					<th>Total Amount</th>
+					<th>Action</th>
+				</tr>
+				<tr ng-repeat="order in orderSummarys">
+					<td class="col-center">{{ $index +1 }}</td>
+					<td class="col-center">{{ order.orderDate | date: 'dd/MM/yy' }}</td>
+					<td class="col-right">{{order.sumTotalAmount | number:2}}</td>
+					<td class="col-center">
+						<button id="showOrderHistoryDetail-btn" ng-click="showOrderHistoryDetail(order.orderDate);">
+								Display
+						</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+      	<div>
+		  	<div>Order record</div>
+			<table class="table-record table-header-blue">
+				<tr>
+					<th>No.</th>
+					<th>Customer</th>
+					<th>Total Amount</th>
+				</tr>
+				<tr ng-repeat="order in orders">
+					<td class="col-center">{{ $index +1 }}</td>
+					<td class="col-200 col-left">
+						<div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
+							{{deliveryAddress.contactName}} - {{deliveryAddress.telephone}}
+							<br>{{deliveryAddress.address}}
+						</div>
+					</td>
+					<td class="col-center">{{order.totalAmount | number:2}}</td>
+				</tr>
+			</table>
+		</div>
+    </div>
+
     
 
-    <table class="table-orderhistory table-header-blue">
-      <tr>
-        <th>No.</th>
-        <th>Date</th>
-        <th>Total Amount</th>
-        <th>Action</th>
-      </tr>
-      <tr ng-repeat="order in orderSummarys">
-        <td>{{ $index +1 }}</td>
-        <td>{{ order.orderDate | date: 'dd/MM/yy' }}</td>
-        <td>{{order.sumTotalAmount | number:2}}</td>
-        <td>
-        <button id="showOrderHistoryDetail-btn" ng-click="showOrderHistoryDetail(order.orderDate);">
-              Display
-            </button>
-        </td>
-      </tr>
-    </table>
+    
     
 
-    <table class="table-header-blue">
-      <tr>
-        <th>No.</th>
-        <th>Customer</th>
-        <th>Total Amount</th>
-        <th>Action</th>
-      </tr>
-      <tr ng-repeat="order in orders">
-        <td>{{ $index +1 }}</td>
-        <td>
-          <div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
-            {{deliveryAddress.contactName}} - {{deliveryAddress.telephone}}
-            <br>{{deliveryAddress.address}}
-          </div>
-        </td>
-        <td>{{order.totalAmount | number:2}}</td>
-        <td>
- 
-        </td>
-      </tr>
-    </table>
+    
 
 
 
