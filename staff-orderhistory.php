@@ -131,7 +131,7 @@
 </head>
 
 
-<body onFocus="parent_disable();" onclick="parent_disable();">
+<body>
 
 
   <div class="orderhistory" ng-app="myApp" ng-controller="OrderHistoryCtrl" id="orderhistory-container">
@@ -139,7 +139,7 @@
 
     <div class="content">
 		<div>
-			<div>Summary per day</div>
+			<div>Summary</div>
 			<table class="table-summary table-header-blue">
 				<tr>
 					<th>No.</th>
@@ -158,7 +158,9 @@
 					</td>
 				</tr>
 			</table>
+			<div>Summary total amount: {{ summaryTotalAmount | number:2 }}</div>
 		</div>
+
 
       	<div>
 		  	<div>Order record</div>
@@ -176,7 +178,7 @@
 							<br>{{deliveryAddress.address}}
 						</div>
 					</td>
-					<td class="col-center">{{order.totalAmount | number:2}}</td>
+					<td class="col-right">{{order.totalAmount | number:2}}</td>
 				</tr>
 			</table>
 		</div>
