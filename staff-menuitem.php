@@ -184,7 +184,11 @@
         </div>
 
         <!-- test edit by aoddy -->
+<<<<<<< HEAD
+        <div>show purich test</div>
+=======
         <div>show Text - Aoddy</div>
+>>>>>>> 2bea4460476b33761de4cd073680c47d101799e7
 
 
         <script src="js/myApp.js"></script>
