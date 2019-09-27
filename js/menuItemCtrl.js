@@ -46,14 +46,17 @@ app.controller('MenuItemController', function ($scope, $http) {
   }
 
   // add order 
-  $scope.addNewMenuItem = function(name, description, price, menuTypeID){
+  $scope.addNewMenuItem = function(name, description, price, meatTypeID, menuTypeID){
+    if(meatTypeID == null){
+      meatTypeID = 0;
+    }
     $http.post($scope.URL + "/api/menus/addNew",{
       name: name,
       description: description,
       //pictureName: null,
       price: price,
       isAvailable: 1,
-      isSelectMeatChoice: 0,
+      isSelectMeatChoice: meatTypeID,
       menuTypeId: menuTypeID
     })
     .then(function mySuccess(response) {
@@ -67,10 +70,12 @@ app.controller('MenuItemController', function ($scope, $http) {
   }
 
 //ADD NEW MEAT TYPE
-  $scope.addNewMeat = function(meatName){
+  $scope.addNewMeat = function(meatName, meatPrice){
       console.log(meatName);
+      console.log(meatPrice);
     $http.post($scope.URL + "/api/menus/addNew/meatType",{
-      name: meatName
+      name: meatName,
+      extraPrice: meatPrice
     })
     .then(function mySuccess(response) {
       alert( meatName + " has been added");
@@ -96,6 +101,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
+  //EDIT MENU
   $scope.changeAvailability = function(menuID, menuName, menuDescription, menuPicture, menuPrice, availability, menuMeat, menuType){
     $http.put($scope.URL + "/api/menus/update",{
       id: menuID,
@@ -115,11 +121,78 @@ app.controller('MenuItemController', function ($scope, $http) {
       alert("failed to change availabilty");
     });
   }
+
+  $scope.editMenu = function (menuID, editName, editDes, editPic, editPrice, availability, editMeat, editCategory,
+    defaultMeatID, defaultMenuId){
+    if(editCategory == null){
+      editCategory = defaultMenuId;
+      //console.log(editCategory);
+    }
+    if(editMeat == null){
+      editMeat = defaultMeatID;
+      //console.log(editMeat);
+    }
+    $http.put($scope.URL + "/api/menus/update",{
+      id: menuID,
+      name: editName,
+      description: editDes,
+      pictureName: editPic,
+      price: editPrice,
+      isAvailable: availability,
+      isSelectMeatChoice: editMeat,
+      menuTypeId: editCategory
+    })
+    .then(function mySuccess(response) {
+      $scope.getMenus();
+      alert("Menu Updated");
+      console.log(response);
+    }, function myError(response) {
+      console.log(response);
+      alert("failed to update menu");
+    });
+  }
+
+  $scope.editMenuType = function(typeID, menuName){
+    $http.put($scope.URL + "/api/menus/update/menuType",{
+      id: typeID,
+      name: menuName
+    })
+    .then(function mySuccess(response) {
+      $scope.getMenusTypes();
+      alert("Category Updated");
+      console.log(response);
+    }, function myError(response) {
+      console.log(response);
+      alert("failed to update category");
+    });
+  }
+
+  $scope.editMeatType = function(meatID, meatName, meatPrice){
+    if(meatPrice == "" || meatPrice == 0){
+      meatPrice = null;
+    }
+    $http.put($scope.URL + "/api/menus/update/meatType",{
+      id: meatID,
+      name: meatName,
+      extraPrice: meatPrice
+    })
+    .then(function mySuccess(response) {
+      $scope.getMeatTypes();
+      alert("Meat Type Updated");
+      console.log(response);
+    }, function myError(response) {
+      console.log(response);
+      alert("failed to update meat type");
+    });
+  }
   
 
   //delete
   $scope.deleteMenuItem = function(menuItemID){
-    console.log(menuItemID);
+    //console.log(menuItemID);
+    if(!confirm("Do you want to delete this menu?")){
+      return
+    }
     $http.delete($scope.URL + "/api/menus/delete/" + menuItemID)
     .then(function mySuccess(response) {
       alert("menu item has been deleted");
@@ -131,6 +204,9 @@ app.controller('MenuItemController', function ($scope, $http) {
 
 //DELETE MENUTYPE
   $scope.deleteMenuType = function(menuTypeID){
+    if(!confirm("Do you want to delete this category?")){
+      return
+    }
     $http.delete($scope.URL + "/api/menus/delete/menuType/" + menuTypeID)
     .then(function mySuccess(response) {
       alert("menu Type has been deleted");
@@ -142,7 +218,9 @@ app.controller('MenuItemController', function ($scope, $http) {
 
 //DELETE MEATTYPE
   $scope.deleteMeatType = function(meatTypeID){
-      console.log(meatTypeID);
+    if(!confirm("Do you want to delete this meat type?")){
+      return
+    }
     $http.delete($scope.URL + "/api/menus/delete/meatType/" + meatTypeID)
     .then(function mySuccess(response) {
       alert("meat Type has been deleted");
