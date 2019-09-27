@@ -43,7 +43,8 @@ app.controller('OrderManagementCtrl', function ($scope, $http) {
   }
 
   $scope.playAlert = function () {
-    document.getElementById('alert-sound').play();
+    if (document.getElementById('alert-sound'))
+      document.getElementById('alert-sound').play();
   }
 
   // get all order
@@ -297,8 +298,4 @@ function checkPermissionCookie() {
     window.open('login.php', '_self', false);
   }
 }
-
-
-
-
 

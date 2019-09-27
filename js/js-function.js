@@ -8,8 +8,8 @@ document.getElementById('iframe').src = 'staff-menuitem.php';
 function showOrderManagementPage(){
 document.getElementById('iframe').src = 'staff-ordermanagement.php';
 }
-function showSettingPage(){
-document.getElementById('iframe').src = 'staff-setting.php';
+function showOrderHistoryPage(){
+document.getElementById('iframe').src = 'staff-orderhistory.php';
 }
 
 function fnExcelReport(tableName,fileName)

@@ -49,7 +49,7 @@
 		<ul>
 			<li onclick="showMenuItemPage();">MENU ITEMS</li>
 			<li onclick="showOrderManagementPage();">ORDER MANAGEMENT</li>
-			<li onclick="showSettingPage();">SETTING</li>
+			<li onclick="showOrderHistoryPage();">ORDER HISTRORY</li>
 		</ul>
 
 	</div>
