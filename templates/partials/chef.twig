@@ -12,6 +12,7 @@ $('document').ready(function() {
                 // show product here. You can do the table but I will show only simple way.
                 for (var i = 0; i < result.data.length; i++) {
 
+                    if(result.data[i].isSelectMeatChoice == 1){
                 temp += '<div class="card-deck" style="float:left; width:255px; padding:5px; height:300px;">'
                     + '<div class="card">'
                         + '<img class="card-img-top" style="width:150px; margin: 0 auto;"; src="images/' + result.data[i].pictureName + '">'
@@ -33,7 +34,7 @@ $('document').ready(function() {
                         +   '<div class="modal-header">'  + result.data[i].description + '</div>'
                         +   '<div class="modal-body">'
                             +   '<form>'
-                                +   '<input type="radio" name="choice" value="female">  Vegetable and Tofu <span style="float:right;"> $0 </span> <br>'
+                                +   '<input type="radio" name="choice" value="Vegetable and Tofu">  Vegetable and Tofu <span style="float:right;"> $0 </span> <br>'
                                 +   '<input type="radio" name="choice" value="female"> Chicken  <span style="float:right;"> $1 </span>  <br>'
                                 +   '<input type="radio" name="choice" value="other"> Beef  <span style="float:right;"> $1 </span> <br>'
                                 +   '<input type="radio" name="choice" value="male"> Pork  <span style="float:right;"> $1 </span> <br>'
