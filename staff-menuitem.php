@@ -183,6 +183,9 @@
             
         </div>
 
+        <!-- test edit by aoddy -->
+        <div>show Text</div>
+
 
         <script src="js/myApp.js"></script>
         <script src="js/menuItemCtrl.js"></script>
