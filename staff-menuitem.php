@@ -161,7 +161,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="menu in menus | filter: searchText:strict">
-                                <td>{{menu.name}}</td>
+                                <td><input style="width:200px" ng-model="menu.name"></td>
                                 <td>{{menu.description}}</td>
                                 <td>{{menu.price}}</td>
                                 <td ng-if="menu.isAvailable==1">Available</td>
