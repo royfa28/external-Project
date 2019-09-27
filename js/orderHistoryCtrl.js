@@ -19,6 +19,7 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $scope.orderDetails = [];
     $scope.deliveryAddresses = [];
     $scope.orderList = [];
+    $scope.summaryTotalAmount = 0;
 
 
     $scope.getSummaryOrder(2019,9);
@@ -40,7 +41,16 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/summaryOrder/"+year+"/"+month)
       .then(function mySuccess(response) {
         $scope.orderSummarys = response.data.data;
-        console.log($scope.orders);
+        var orderSummary = response.data.data;
+        // calculate total summary
+        $scope.summaryTotalAmount = 0;
+        if (orderSummary.length > 0)
+        {
+          orderSummary.forEach(item => {
+            $scope.summaryTotalAmount += item.sumTotalAmount;
+          });
+        }
+          
 
       }, function myError(response) {
         alert("Get all order fail.");
@@ -52,8 +62,6 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/all/orderDetail")
       .then(function mySuccess(response) {
         $scope.orderDetails = response.data.data;
-        console.log($scope.orderDetails);
-
       }, function myError(response) {
         alert("Get all order detail fail.");
       });
@@ -85,7 +93,6 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $http.get($scope.URL + "/api/orders/get/orderByDate/"+date)
       .then(function mySuccess(response) {
         $scope.orders = response.data.data;
-        console.log($scope.orders);
 
       }, function myError(response) {
         alert("Get all menu fail.");
