@@ -184,7 +184,7 @@
         </div>
 
         <!-- test edit by aoddy -->
-        <div>show Text</div>
+        <div>show Text - Aoddy</div>
 
 
         <script src="js/myApp.js"></script>
