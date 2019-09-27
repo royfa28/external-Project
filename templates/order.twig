@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="css/toolbar.css">
         <link rel="stylesheet" href="css/modal.css">
         <link rel="stylesheet" href="css/order.css">
+        <link rel="stylesheet" href="css/shoppingcart.css">
     </head>
 {% include 'partials/head.twig' %}
     <body>
@@ -77,8 +78,20 @@
 
             </div>
 
-            <section class="section hidden">
-                <div class="cart"></div>
+            <section id="shop-cart">
+                <h3>CART</h3>
+                <div class="cart-row">
+                    <span class="cart-item cart-header cart-column">NAME</span>
+                    <span class="cart-price cart-header cart-column">PRICE</span>
+                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                </div>
+                <div class="cart-items">
+                </div>
+                <div class="cart-total">
+                    <strong class="cart-total-title">Total</strong>
+                    <span class="cart-total-price">$0</span>
+                </div>
+                <a href="payment.php"><button class="btn btn-primary btn-purchase" type="button">PURCHASE</button></a>
             </section>
 
             <script src="script/pageWithProducts.js"></script>

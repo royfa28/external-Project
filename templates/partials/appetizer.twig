@@ -35,10 +35,10 @@ $('document').ready(function() {
                         + '<div class="modal-footer">'
                             + '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>'
                             + '<div class="cart_button">'
-                                +   '<h3 class="product__name hidden">' + result.data[i].name + '</h3>'
-                                +   '<h3 class="product__description hidden">' + result.data[i].description + '</h3>'
-                                +   '<h3 class="product__price hidden">' + result.data[i].price + '</h3>'
-                                +   '<button type="button" class="btn btn-primary" data-action="ADD_TO_CART">Add to cart</button> </div>'
+                                +   '<h3 class="shop-item-name hidden">' + result.data[i].name + '</h3>'
+                                +   '<h3 class="shop-item-id hidden">' + result.data[i].id + '</h3>'
+                                +   '<h3 class="shop-item-price hidden">' + result.data[i].price + '</h3>'
+                                +   '<button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button> </div>'
                         +'</div> </div> </div> </div>';
                 } 
                 console.log(temp);
