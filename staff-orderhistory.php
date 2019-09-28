@@ -181,17 +181,17 @@
 				<tr>
 					<th class="col-40">No.</th>
 					<th class="col-300">Customer</th>
-					<th class="col-10">Total Amount</th>
+					<th class="col-100">Total Amount</th>
 				</tr>
 				<tr ng-repeat="order in orders">
-					<td class="col-center">{{ $index +1 }}</td>
-					<td class="col-200 col-left">
+					<td class="col-center col-40">{{ $index +1 }}</td>
+					<td class="col-300 col-left">
 						<div ng-repeat="deliveryAddress in deliveryAddresses | filter: {id: order.deliveryAddressId }">
 							{{deliveryAddress.contactName}} - {{deliveryAddress.telephone}}
 							<br>{{deliveryAddress.address}}
 						</div>
 					</td>
-					<td class="col-right">{{order.totalAmount | number:2}}</td>
+					<td class="col-right col-100">{{order.totalAmount | number:2}}</td>
 				</tr>
 			</table>
 		</div>
