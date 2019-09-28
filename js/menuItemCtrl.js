@@ -63,9 +63,9 @@ app.controller('MenuItemController', function ($scope, $http) {
        // convert image to base64
        base64Image = await toBase64($scope.menuImage);
        // convert to url friendly
-       base64Image = base64_url_encode(base64Image);
+       base64Image = await base64_url_encode(base64Image);
 
-       console.log(base64Image);
+       //console.log(base64Image);
 
     }
     
@@ -83,8 +83,7 @@ app.controller('MenuItemController', function ($scope, $http) {
       //console.log(response);
       alert( name + " has been added");
       //clear image data
-      $scope.menuImage = null;
-      document.getElementById('menuimg').src="";
+      $scope.clearMenuForm();
 
       // refresh menu data
       $scope.getMenus();
@@ -96,8 +95,8 @@ app.controller('MenuItemController', function ($scope, $http) {
 
 //ADD NEW MEAT TYPE
   $scope.addNewMeat = function(meatName, meatPrice){
-      console.log(meatName);
-      console.log(meatPrice);
+      //console.log(meatName);
+      //console.log(meatPrice);
     $http.post($scope.URL + "/api/menus/addNew/meatType",{
       name: meatName,
       extraPrice: meatPrice
@@ -113,7 +112,7 @@ app.controller('MenuItemController', function ($scope, $http) {
 
 //ADD NEW MENU TYPE
   $scope.addNewMenuType = function(newTypeName){
-    console.log(newTypeName);
+    //console.log(newTypeName);
     $http.post($scope.URL + "/api/menus/addNew/menuType",{
       name: newTypeName
     })
@@ -170,7 +169,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     .then(function mySuccess(response) {
       $scope.getMenus();
       alert("Menu Updated");
-      console.log(response);
+      //console.log(response);
     }, function myError(response) {
       console.log(response);
       alert("failed to update menu");
@@ -185,7 +184,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     .then(function mySuccess(response) {
       $scope.getMenusTypes();
       alert("Category Updated");
-      console.log(response);
+      //console.log(response);
     }, function myError(response) {
       console.log(response);
       alert("failed to update category");
@@ -204,7 +203,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     .then(function mySuccess(response) {
       $scope.getMeatTypes();
       alert("Meat Type Updated");
-      console.log(response);
+      //console.log(response);
     }, function myError(response) {
       console.log(response);
       alert("failed to update meat type");
@@ -257,7 +256,7 @@ app.controller('MenuItemController', function ($scope, $http) {
 
   // Get menu image from event change
   $scope.menuImageChange = function(event) {
-    console.log(event);
+    //console.log(event);
     $scope.menuImage = event.target.files[0];
     // FileReader support
     if (FileReader) {
@@ -268,6 +267,14 @@ app.controller('MenuItemController', function ($scope, $http) {
       fr.readAsDataURL($scope.menuImage);
     }
   }
+
+  // clear menu form
+ $scope.clearMenuForm = function () {
+  $scope.menuImage = null;
+  document.getElementById('menuimg').src="";
+  document.getElementById('file').value = "";
+  
+}
 
 });
 
@@ -282,6 +289,8 @@ const toBase64 = file => new Promise((resolve, reject) => {
 function base64_url_encode(input) {
  return input.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
 }
+
+
 
 
 
