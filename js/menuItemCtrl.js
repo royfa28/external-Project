@@ -13,6 +13,9 @@ app.controller('MenuItemController', function ($scope, $http) {
 
     $scope.meatTypes = [];
     $scope.getMeatTypes();
+
+    // keep menu image file
+    $scope.menuImage;
   });
 
   $scope.getMenus = function(){
@@ -46,14 +49,31 @@ app.controller('MenuItemController', function ($scope, $http) {
   }
 
   // add order 
-  $scope.addNewMenuItem = function(name, description, price, meatTypeID, menuTypeID){
+  $scope.addNewMenuItem = async function(name, description, price, meatTypeID, menuTypeID){
     if(meatTypeID == null){
       meatTypeID = 0;
     }
+
+    // get menu image detail
+    var imageName;
+    var base64Image;
+    if ($scope.menuImage != null)
+    {
+       imageName = $scope.menuImage.name;
+       // convert image to base64
+       base64Image = await toBase64($scope.menuImage);
+       // convert to url friendly
+       base64Image = base64_url_encode(base64Image);
+
+       console.log(base64Image);
+
+    }
+    
     $http.post($scope.URL + "/api/menus/addNew",{
       name: name,
       description: description,
-      //pictureName: null,
+      pictureName: imageName,
+      imageData: base64Image,
       price: price,
       isAvailable: 1,
       isSelectMeatChoice: meatTypeID,
@@ -62,6 +82,11 @@ app.controller('MenuItemController', function ($scope, $http) {
     .then(function mySuccess(response) {
       //console.log(response);
       alert( name + " has been added");
+      //clear image data
+      $scope.menuImage = null;
+      document.getElementById('menuimg').src="";
+
+      // refresh menu data
       $scope.getMenus();
     }, function myError(response) {
         console.log(response);
@@ -230,4 +255,34 @@ app.controller('MenuItemController', function ($scope, $http) {
     });
   }
 
+  // Get menu image from event change
+  $scope.menuImageChange = function(event) {
+    console.log(event);
+    $scope.menuImage = event.target.files[0];
+    // FileReader support
+    if (FileReader) {
+      var fr = new FileReader();
+      fr.onload = function () {
+          document.getElementById('menuimg').src = fr.result;
+      }
+      fr.readAsDataURL($scope.menuImage);
+    }
+  }
+
 });
+
+// convert image to base64 function
+const toBase64 = file => new Promise((resolve, reject) => {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = () => resolve(reader.result);
+  reader.onerror = error => reject(error);
+});
+
+function base64_url_encode(input) {
+ return input.replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+}
+
+
+
+
