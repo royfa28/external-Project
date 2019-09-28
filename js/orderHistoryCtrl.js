@@ -9,6 +9,15 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
   angular.element(document).ready(function () {
     $scope.URL = 'http://ec2-3-14-6-238.us-east-2.compute.amazonaws.com:3000';
 
+    // create month and year
+    $scope.month = [1,2,3,4,5,6,7,8,9,10,11,12];
+    $scope.year = [];
+    var d = new Date();
+    var year = d.getFullYear();
+    for (var i=0; i<5; i++)
+    {
+      $scope.year.push(year-i);
+    }
 
     // Set start filter
     $scope.mySortType = "true";
@@ -22,7 +31,7 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $scope.summaryTotalAmount = 0;
 
 
-    $scope.getSummaryOrder(2019,9);
+    //$scope.getSummaryOrder(2019,9);
     $scope.getAllDeliveryAddress();
     $scope.getOrderList();
 
@@ -31,6 +40,16 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
 
 
   });
+
+  $scope.searchSummaryClick = function(year,month){
+    if (!year || !month)
+    {
+      alert("Pleaer select both of month and year.");
+      return;
+    }
+
+    $scope.getSummaryOrder(year,month);
+  }
 
   $scope.displayContent = function () {
     document.getElementById("orderhistory-container").style.visibility = "visible";

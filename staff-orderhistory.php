@@ -132,26 +132,37 @@
 
 
 <body>
-
-
   <div class="orderhistory" ng-app="myApp" ng-controller="OrderHistoryCtrl" id="orderhistory-container">
     <div class="title">Order History</div>
 
     <div class="content">
 		<div>
-			<div>Summary</div>
+      <div class="filter-section">
+        <div>Summary:</div>
+        <label for="selMonth">Month</label>
+        <select id="selMonth" ng-model="selMonth">
+          <option ng-repeat="m in month" value="{{m}}">{{ m }}</option>
+        </select>
+        <label for="selYear">Year</label>
+        <select id="selYear" ng-model="selYear">
+          <option ng-repeat="y in year" value="{{y}}">{{ y }}</option>
+        </select>
+        <button id="searchSummary" ng-click="searchSummaryClick(selYear,selMonth)">Get data</button>
+      </div>
+      
+
 			<table class="table-summary table-header-blue">
 				<tr>
-					<th>No.</th>
-					<th>Date</th>
-					<th>Total Amount</th>
-					<th>Action</th>
+					<th class="col-40">No.</th>
+					<th class="col-80">Date</th>
+					<th class="col-100">Total Amount</th>
+					<th class="col-80">Action</th>
 				</tr>
 				<tr ng-repeat="order in orderSummarys">
-					<td class="col-center">{{ $index +1 }}</td>
-					<td class="col-center">{{ order.orderDate | date: 'dd/MM/yy' }}</td>
-					<td class="col-right">{{order.sumTotalAmount | number:2}}</td>
-					<td class="col-center">
+					<td class="col-center ">{{ $index +1 }}</td>
+					<td class="col-center col-80">{{ order.orderDate | date: 'dd/MM/yy' }}</td>
+					<td class="col-right col-80">{{order.sumTotalAmount | number:2}}</td>
+					<td class="col-center col-80">
 						<button id="showOrderHistoryDetail-btn" ng-click="showOrderHistoryDetail(order.orderDate);">
 								Display
 						</button>
@@ -162,13 +173,15 @@
 		</div>
 
 
-      	<div>
-		  	<div>Order record</div>
+    <div>
+        <div class="filter-section">
+        <div>Order record</div>
+        </div>
 			<table class="table-record table-header-blue">
 				<tr>
-					<th>No.</th>
-					<th>Customer</th>
-					<th>Total Amount</th>
+					<th class="col-40">No.</th>
+					<th class="col-300">Customer</th>
+					<th class="col-10">Total Amount</th>
 				</tr>
 				<tr ng-repeat="order in orders">
 					<td class="col-center">{{ $index +1 }}</td>
