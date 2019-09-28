@@ -71,6 +71,7 @@ body {
 .table-header-blue .col-80 { width: 80px;} 
 .table-header-blue .col-100 { width: 100px; }
 .table-header-blue .col-200 { width: 200px; }
+.table-header-blue .col-300 { width: 300px; }
 .table-header-blue .col-left { text-align: left; }
 .table-header-blue .col-right { text-align: right; }
 .table-header-blue .col-center { text-align: center; }
@@ -489,8 +490,21 @@ input:checked + .slider:before {
 	display: flex;
 }
 .orderhistory .content div {
-	margin: 4px;
+	margin-right: 30px;
 }
+.orderhistory table {
+	margin-top: 8px;
+}
+.orderhistory .filter-section {
+	display: flex; 
+	flex-direction: row; 
+	align-items: center;
+	height: 24px;
+}
+.orderhistory .filter-section label,select,button {
+	margin-right: 4px;
+}
+
 
 
 
