@@ -495,6 +495,13 @@ input:checked + .slider:before {
 
 
 
+.menuimg {
+	width: 200px;
+	clear: both;
+	
+}
+
+
 
 
 /* Modal */
@@ -513,6 +520,8 @@ input:checked + .slider:before {
 .modal .tblCommunications .td1 {
 	text-align: center;
 }
+
+
 
 
 

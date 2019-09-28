@@ -2,9 +2,12 @@
 <html>
 
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/staff.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+        
 
         <style>
             textarea {
@@ -67,12 +70,25 @@
                             <br>
 
                             <label>Menu Type:</label>
-                            <select style="margin-left:1em" ng-model="addMenuType" ng-options="menuType.name for menuType in menuTypes">
+                            <select style="margin-left:1em"     ng-model="addMenuType" ng-options="menuType.name for menuType in menuTypes">
                                 <option hidden disabled selected value>-- Choose Menu Type --</option>
                             </select>
 
+                            <br>
+                            <label>Menu image:</label>
+                            <input type="file" 
+                                id="file" 
+                                name='file' 
+                                onchange="angular.element(this).scope().menuImageChange(event)" />
                             
                             <br><br>
+                            
+                            <img id="menuimg" 
+                                class="menuimg" 
+                                src="" 
+                                alt="">
+                            <br><br>
+
 
                             <button type="submit" ng-click="addNewMenuItem(addName, addDescription, addPrice, addMeatType.id, addMenuType.id)">ADD NEW</button>
                         </fieldset>
@@ -202,6 +218,9 @@
         <script src="js/myApp.js"></script>
         <script src="js/menuItemCtrl.js"></script>
         <script src="js/js-function.js"></script>
+        
     </body>
+
+
 
 </html>
