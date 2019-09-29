@@ -8,7 +8,9 @@ html {
   --main-hilight: #ffcc00;
   --sec-hilight: red;
   --thr-hilight: gray;
-  height: 100%;
+	height: 100%;
+	
+	
   
 }
 
