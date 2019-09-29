@@ -9,3 +9,8 @@
 .hidden{
     display:none;
 }
+
+.max-width{
+    width: 1200px;
+    text-align: center;
+}
