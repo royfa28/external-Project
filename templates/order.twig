@@ -3,7 +3,6 @@
     <head>
         <link rel="stylesheet" href="css/toolbar.css">
         <link rel="stylesheet" href="css/order.css">
-        <link rel="stylesheet" href="css/shoppingcart.css">
     </head>
 {% include 'partials/head.twig' %}
     <body>
@@ -18,10 +17,7 @@
                     <a href="#Soup" class="filte-item" data-group="fighting">Soup</a>
                     <a href="#Drink" class="filte-item" data-group="shooter">Drink</a>
                     <a href="#Dessert" class="filte-item" data-group="shooter">Dessert</a>
-                    <form class="form-inline my-2 my-lg-0 float-right">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                    <a href="#shop-cart" class="filte-item">Go to Cart</a>
                 </div>
                 
             </div>
@@ -80,7 +76,7 @@
             <section id="shop-cart">
                 <h3>Shopping cart</h3>
                 <div class="cart-row row mb-2">
-                    <div class="col-md-5 font-weight-bold">NAME</div>
+                    <div class="col-md-6 font-weight-bold">NAME</div>
                     <div class="col-md-2 font-weight-bold">PRICE</div>
                     <div class="col-md-3 font-weight-bold">QUANTITY</div>
                     {# <span class="cart-item cart-header cart-column">NAME</span>
@@ -223,7 +219,7 @@
                     cartArray.forEach( (cartItem) => {
                         let node = document.importNode( template.content, true );
                         // fill with data
-                        node.querySelector('[name="name"]').value = cartItem.name;
+                        node.querySelector('.name').innerText = cartItem.name;
                         node.querySelector('[name="quantity"]').value = cartItem.quantity;
                         node.querySelector('[name="quantity"]').setAttribute('data-id', cartItem.id);
                         node.querySelector('[name="price"]').value = cartItem.price;
