@@ -578,28 +578,8 @@
                          </div>
                     </div>
 
-                    <!--
-                    <div class="col-md-4 col-sm-8">
-                         <div class="footer-info footer-open-hour">
-                              <div class="section-title">
-                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
-                              </div>
-                              <div class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p>Monday: Closed</p>
-                                   <div>
-                                        <strong>Tuesday to Friday</strong>
-                                        <p>7:00 AM - 9:00 PM</p>
-                                   </div>
-                                   <div>
-                                        <strong>Saturday - Sunday</strong>
-                                        <p>11:00 AM - 10:00 PM</p>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               -->
 
-                    <div class="col-md-2 col-sm-4">
+                    <div class="col-md-3 col-sm-8">
                          <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
                               <li><a href="https://www.facebook.com/3-Seasons-Thai-By-Khonthai-932718303564394/"
                                         class="fa fa-facebook-square" attr="facebook icon"></a></li>
@@ -608,7 +588,20 @@
                          </ul>
 
                          <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
-                              <p><br>Copyright &copy; 2019 <br>3 Season Thai
+                              <p>Copyright &copy; 2019 <br>3 Season Thai
+                              </p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-8">
+                         <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
+                              <a href="login.php" class="section-btn">OrderManagement</a>
+                         </ul>     
+
+                         <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
+                              <p><br>
+                                   Available only for staff. <br>
+                                   Use for manage online ordering.
                               </p>
                          </div>
                     </div>

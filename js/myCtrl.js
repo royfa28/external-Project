@@ -1,6 +1,5 @@
 
 
-
 var app = angular.module('myApp', []);
 
 
@@ -260,7 +259,7 @@ app.controller('StaffMainCtrl', function ($scope, $http) {
 
   $scope.logout = function () {
     deleteCookie("authPermission");
-    window.open('login.php', '_self', false);
+    window.open('index.php', '_self', false);
   }
 });
 
