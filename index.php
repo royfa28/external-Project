@@ -50,7 +50,7 @@
 
                     <!-- lOGO -->
                     <div style="display: flex;">
-                              <img src="./images/logo-image.gif" alt="3seasonthai logo" style="width: 50px; margin-right: 8px;">
+                              <img src="./images/logo-image.gif" alt="3seasonthai logo" style="width: 50px; height: 50px; margin-right: 8px;">
                               <a href="index.php" class="navbar-brand">3 SeasonThai</a>
                     </div>
                     

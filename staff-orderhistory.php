@@ -133,7 +133,7 @@
 
 <body>
   <div class="orderhistory" ng-app="myApp" ng-controller="OrderHistoryCtrl" id="orderhistory-container">
-    <div class="title">Order History</div>
+    <div class="title">ORDER HISTORY</div>
 
     <div class="content">
 		<div>
