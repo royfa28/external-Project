@@ -137,7 +137,7 @@
   <audio id="alert-sound" src="audios/alert.mp3" preload="auto"></audio>
 
   <div ng-app="myApp" ng-controller="OrderManagementCtrl" id="order-container" class="order-container">
-    <div class="title">Order Management</div>
+    <div class="title">ORDER MANAGEMENT</div>
 
     <div class="orderList" ng-repeat="order in orders">
       <div class="order-number" ng-if="order.status!='Finish'">

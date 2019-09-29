@@ -43,7 +43,8 @@
     </head>
 
     <body>
-        <h1>MENU ITEMS</h1>
+        <div class="title">MENU ITEMS</div>
+        
         <div ng-app="myApp" ng-controller="MenuItemController">
             <div class="viewSide">
                 <div class="viewNormal">
