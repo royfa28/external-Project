@@ -42,7 +42,9 @@
 					</span>
 
 					<span class="login100-form-avatar">
-						<img src="images/logo.jpg" alt="Logo">
+						<a href="index.php">
+							<img src="images/logo.jpg" alt="Logo">
+						</a>
 					</span>
 
 					<div class="wrap-input100 validate-input m-t-55 m-b-35" data-validate="Enter username">
@@ -60,9 +62,15 @@
 					</div>
 				</form>
 				
-				<button id="submit-btn" ng-click="checkUserPermission();" class="login100-form-btn login-btn">
+				<button id="submit-btn" ng-click="checkUserPermission();"
+					style="margin-bottom: 16px;" class="login100-form-btn login-btn">
 					Login
 				</button>
+				<a href="index.php">
+					<button id="submit-btn" class="login100-form-btn login-btn">
+						Home page
+					</button>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -88,16 +96,6 @@
 	<script src="js/main.js"></script>
 	<script src="js/myApp.js"></script>
 	<script src="js/myCtrl.js"></script>
-	<script>
-		/*
-		function login() {
-			var username = document.getElementById("username").value;
-			var username = document.getElementById("password").value;
-
-			// TODO: get authorize before open start main page
-			//window.open ('staff-main.php','_self',false);
-		}*/
-	</script>
 
 </body>
 
