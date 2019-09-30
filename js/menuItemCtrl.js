@@ -59,7 +59,7 @@ app.controller('MenuItemController', function ($scope, $http) {
     var base64Image;
     if ($scope.menuImage != null)
     {
-       imageName = $scope.menuImage.name;
+       imageName = "images/menuImages/" + $scope.menuImage.name;
        // convert image to base64
        base64Image = await toBase64($scope.menuImage);
        // convert to url friendly
