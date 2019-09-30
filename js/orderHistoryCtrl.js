@@ -18,6 +18,7 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
       $scope.year.push(year-i);
     }
 
+
     // Set start filter
     $scope.mySortType = "true";
     $scope.findStatus = "";
@@ -27,7 +28,7 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $scope.orderDetails = [];
     $scope.deliveryAddresses = [];
     $scope.orderList = [];
-    $scope.summaryTotalAmount = 0;
+    $scope.summaryTotalAmount = 100;
 
 
     //$scope.getSummaryOrder(2019,9);
