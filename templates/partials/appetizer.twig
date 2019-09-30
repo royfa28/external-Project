@@ -44,7 +44,15 @@ $('document').ready(function() {
             result.data.forEach(( item )=>{
                 let id = item.id;
                 let name = item.name;
-                let imagesrc = item.pictureName;
+
+                let imagesrc = "";
+                // check if pictureName not null or not empty
+                if (item.pictureName != null && item.pictureName != "")
+                {
+                    imagesrc = item.pictureName;
+                } else {
+                    imagesrc = "images/logo-image.gif";
+                }
                 let description = item.description;
                 let price = item.price.toFixed(2);
                 let meatchoice = (item.isSelectMeatChoice) ? '' : 'hidden';
