@@ -29,7 +29,7 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
     $scope.orderDetails = [];
     $scope.deliveryAddresses = [];
     $scope.orderList = [];
-    $scope.summaryTotalAmount = 100;
+    $scope.summaryTotalAmount = 0;
 
 
     //$scope.getSummaryOrder(2019,9);
