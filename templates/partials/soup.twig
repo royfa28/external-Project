@@ -55,7 +55,7 @@ $('document').ready(function() {
                 }
                 
                 let description = item.description;
-                let price = item.price.toFixed(2);
+                let price = (item.price) ? item.price.toFixed(2) : 0;
                 let meatchoice = (item.isSelectMeatChoice) ? '' : 'hidden';
                 let isavailable = (item.isAvailable) ? '' : 'disabled';
 
