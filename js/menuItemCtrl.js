@@ -266,6 +266,8 @@ app.controller('MenuItemController', function ($scope, $http) {
       }
       fr.readAsDataURL($scope.menuImage);
     }
+
+    console.log('I m here');
   }
 
   // clear menu form
