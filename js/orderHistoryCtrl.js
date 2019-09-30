@@ -70,6 +70,8 @@ app.controller('OrderHistoryCtrl', function ($scope, $http) {
             $scope.summaryTotalAmount += item.sumTotalAmount;
           });
         }
+
+        
           
 
       }, function myError(response) {

@@ -170,7 +170,6 @@
 				</tr>
       </table>
       <div>Summary total amount: {{ summaryTotalAmount | number:2 }}</div> 
-      <div>test</div>
 		</div>
 
 
