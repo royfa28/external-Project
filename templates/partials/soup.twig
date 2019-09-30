@@ -36,15 +36,17 @@ $('document').ready(function() {
     .done((result) => {
         
         if( result.data ){
+            console.log( result.data )
             //select the container in order.twig
             const container = document.querySelector('#soup-content');
             //select the template
             const template = document.querySelector('#soup-template');
 
             result.data.forEach(( item )=>{
+                
                 let id = item.id;
                 let name = item.name;
-                
+                console.log( name )
                 let imagesrc = "";
                 // check if pictureName not null or not empty
                 if (item.pictureName != null && item.pictureName != "")
@@ -74,7 +76,7 @@ $('document').ready(function() {
                 container.appendChild(clone);
             });
             // call the function in order.twig to activate the cart forms
-            activateCartForms()
+            activateCartForms('#soup-content')
         }
     });
     

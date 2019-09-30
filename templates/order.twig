@@ -98,7 +98,7 @@
 
             {% include 'partials/modal.twig' %}
             {% include 'partials/cartitem.twig' %}
-
+            {% include 'partials/meatselection.twig' %}
             <script>
             //array for shopping cart
                 let cartItems = [];
@@ -122,10 +122,17 @@
                         renderCartItems( cartItems );
                     }
                 });
+                shopCart.addEventListener('change', (event) => {
+                    let newQty = event.target.value;
+                    let itemId = event.target.getAttribute('data-id');
+                    let item = {id: itemId, quantity: newQty };
+                    updateCartItemQty( item, cartItems );
+                    renderCartItems( cartItems );
+                })
 
-                function activateCartForms(){
+                function activateCartForms( sectionId ){
                     // add listener to cart forms
-                    let cartBtns = Array.from(document.querySelectorAll('.cart-form'));
+                    let cartBtns = Array.from(document.querySelectorAll( sectionId +' .cart-form'));
                     cartBtns.forEach((form) => {
                         form.addEventListener('submit' , ( event ) => {
                             // stop form from refreshing page
@@ -137,7 +144,8 @@
                                 "description" : "${data.get('description')}",
                                 "price" : "${data.get('price')}",
                                 "quantity" : ${data.get('quantity')},
-                                "id" : ${data.get('productid')}
+                                "id" : ${data.get('productid')},
+                                "meatselection" : ${data.get('meatselection')}
                                 }`
                             );
                             // open modal
@@ -157,6 +165,12 @@
                     node.querySelector('[name="quantity"]').value = modalData.quantity;
                     node.querySelector('[name="price"]').value = modalData.price;
                     node.querySelector('[name="productid"]').value = modalData.id;
+                    //add meatselection
+                    if(modalData.meatselection){
+                        let mtemplate = document.querySelector('#meat-selection-template');
+                        let mnode = document.importNode( mtemplate.content, true );
+                        node.querySelector('.meat-selection').appendChild(mnode);
+                    }
                     //add modal to the DOM
                     doc.appendChild(node);
                     // add listener for modal's cart button
@@ -197,6 +211,17 @@
                         if( cartItem.id == item.id ){
                             // update the quantity
                             itemsArray[index].quantity = parseInt(cartItem.quantity) + parseInt(item.quantity);
+                            updated = true;
+                        }
+                    });
+                    return updated;
+                }
+
+                function updateCartItemQty( item, itemsArray ){
+                    let updated = false;
+                    itemsArray.forEach( (cartItem , index ) => {
+                        if( cartItem.id == item.id ){
+                            itemsArray[index].quantity = parseInt( item.quantity );
                             updated = true;
                         }
                     });

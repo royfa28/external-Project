@@ -13,6 +13,7 @@
                 <input type="hidden" name="description" value="">
                 <input type="hidden" name="productid" value="">
                 <input type="hidden" name="price" value="">
+                <input type="hidden" name="meatselection" value="">
                 <button class="btn btn-primary cart-button" type="submit">Add to Cart</button>
             </form>
         </footer>
@@ -36,6 +37,7 @@ $('document').ready(function() {
     .done((result) => {
         
         if( result.data ){
+            
             //select the container in order.twig
             const container = document.querySelector('#appetizer-content');
             //select the template
@@ -55,7 +57,7 @@ $('document').ready(function() {
                 }
                 let description = item.description;
                 let price = item.price.toFixed(2);
-                let meatchoice = (item.isSelectMeatChoice) ? '' : 'hidden';
+                let meatchoice = (item.isSelectMeatChoice) ? true : false;
                 let isavailable = (item.isAvailable) ? '' : 'disabled';
 
                 //clone template
@@ -69,11 +71,16 @@ $('document').ready(function() {
                 clone.querySelector('[name="productid"]').value = id;
                 clone.querySelector('[name="name"]').value = name;
                 clone.querySelector('[name="price"]').value = price;
+                clone.querySelector('[name="meatselection"]').value = meatchoice;
+                // if item is unavailable, disable the add to cart button
+                if( !item.isAvailable ){
+                    clone.querySelector('.cart-button').setAttribute('disabled', isavailable )
+                }
                 //append to container
                 container.appendChild(clone);
             });
             // call the function in order.twig to activate the cart forms
-            activateCartForms()
+            activateCartForms('#appetizer-content')
         }
     });
 
